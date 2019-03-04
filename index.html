@@ -1,0 +1,255 @@
+<meta charset="utf-8">
+
+<html>
+<head>
+
+  <link rel="stylesheet" href="jquery-ui.min.css" />
+  <style type="text/css">
+
+
+body, div, td {
+  font-weight: 300;
+  font-family: monospace, "CourierNew";
+  font-size: 14px;
+}
+
+html, body { margin:0; padding:0; overflow:auto }
+
+svg { top:0; left:0; height: 100%; width: 100%; }
+
+.node rect {
+  stroke: #999;
+  fill: #fff;
+  stroke-width: 1.5px;
+}
+
+.edgePath {
+  fill-opacity: 0.0;
+  stroke: #333;
+  stroke-width: 3px;
+}
+
+.arrowhead {
+  fill-opacity: 1.0;
+  stroke-width: 0px;
+}
+
+body {
+  margin: 0 auto;
+  background-color: #ddd;
+}
+
+a, a:visited, a:active {
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
+.operationLhs {
+  text-align: right;
+}
+
+.irScalar { color: #c60; }
+.irStackVariable { color: #06c; }
+.irCall { color: #60c; }
+.irConstant { color: #c06; }
+.irComment { color: #0c6; }
+.block {
+  font-family: Monospace, "Courier New";
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0px;
+  padding: 4px;
+}
+
+td {
+  white-space: nowrap;
+}
+
+.irInstructionLi:hover {
+  background-color: #cfc;
+}
+
+#content {
+  margin-left: 200px;
+}
+
+#documents {
+  background-color: #fff;
+  color: #000;
+  padding: 4px;
+  font-family: monospace, "Courier New";
+  width: 100%;
+  font-size: 12pt;
+  border: 1px solid #999;
+}
+
+#functions-list {
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0px;
+  margin: 0px;
+}
+
+#nav {
+  width: 200px;
+  height: 100%;
+  padding: 0px;
+  background-color: #eee;
+  float: left;
+  border-right: 1px solid #666;
+  overflow-y: auto;
+  position: fixed;
+}
+
+.navHeader {
+  color: #000;
+  font-size: 16pt;
+  padding: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#functions-list li {
+  padding: 4px;
+  border-bottom: 1px solid #999;
+}
+
+#functions-list li:last-child {
+  border-bottom: none;
+}
+
+#functions-list li:hover {
+  cursor: pointer;
+  background-color: #fff;
+}
+
+#sidebar-outer {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  top: 0;
+  right: 0;
+  position: fixed;
+  overflow-y: auto;
+}
+
+#sidebar-tabs {
+  top: 0;
+  margin: 0px;
+  float: left;
+}
+
+#sidebar-tabs ul {
+  margin: 0;
+  padding: 0;
+}
+
+#sidebar-tabs li {
+  list-style-type: none;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+#sidebar-tabs li:last-child {
+  border-radius: 0 0 0 10px;
+  overflow: hidden;
+}
+
+.sidebar-tab-close {
+  float: left;
+  padding: 4px;
+  width: 24px;
+  background-color: #c00;
+  border-right: 1px solid black;
+}
+
+.sidebar-tab-close:hover {
+  background-color: #f33;
+  cursor: pointer;
+}
+
+.sidebar-tab-show {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 4px;
+  color: #fff;
+  display: block;
+  background-color: #333;
+  text-align: right;
+}
+
+.sidebar-tab-show:hover {
+  background-color: #666;
+  cursor: pointer;
+}
+
+#sidebar-inner {
+  height: 100%;
+  margin: 0px;
+  padding: 4px;
+  border-left: 1px solid black;
+  background-color: #eee;
+  overflow-y: auto;
+  float: left;
+}
+
+#sidebar-inner ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#sidebar-inner ul {
+  list-style-type: none;
+  margin-left: 10px;
+  padding: 0;
+}
+
+  </style>
+
+
+<script src="js/dagre-d3.js"></script>
+<script src="js/d3.v4.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/raptor.js"></script>
+<script src="js/raptor-render.js"></script>
+<script src="js/raptor-tabs.js"></script>
+<script src="js/utility.js"></script>
+
+<script language="javascript">
+$(document).ready(function() {
+  tabs_init();
+})
+</script>
+
+</head>
+<body>
+
+<div id="nav">
+  <div class="navHeader">Documents</div>
+  <select id="documents"></select>
+  <div class="navHeader">Functions</div>
+  <ul id="functions-list">
+  </ul>
+</div>
+
+<div id="content">
+  <svg id="svg-canvas"><g/></svg>
+</div>
+
+<div id="sidebar-outer"><div id="sidebar-tabs">
+  <ul>
+    <li id="sidebar-tabs-toggle" class="sidebar-tab-show">Toggle</li>
+  </ul>
+</div><div id="sidebar-inner">testing</div></div>
+ 
+<div id="dialog-xrefs" title="XRefs"></div>
+
+
+</body>
+</html>
